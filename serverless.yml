@@ -1,0 +1,17 @@
+service: myapp
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: eu-west-1
+plugins:
+  - serverless-offline
+functions:
+  get_users:
+    handler: handler.get_users
+    timeout: 30
+    events:
+      - http:
+          path: v1/user
+          method: get
+          cors: true
